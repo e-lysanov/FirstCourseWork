@@ -45,10 +45,4 @@ public class Employee {
                 ", зарплата: " + salary +
                 ", id: " + id;
     }
-
-
-    public int countMounthSalary() {
-
-        return 0;
-    }
 }
