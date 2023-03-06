@@ -42,7 +42,7 @@ public class Employee {
     public String toString() {
         return "Сотрудник: " + fullName +
                 ", отдел: " + department +
-                ", зарплата: " + salary +
+                ", зарплата: " + salary + " рублей" +
                 ", id: " + id;
     }
 }
