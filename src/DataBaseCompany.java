@@ -31,25 +31,45 @@ public class DataBaseCompany {
     }
 
 
-//    реализовал метод, суммирующий все зарплаты
-    public void calculateSalary(){
+    //    реализовал метод, суммирующий все зарплаты
+    public void calculateSalary() {
         int sum = 0;
         for (int i = 0; i < size; i++) {
             sum += employees[i].getSalary();
         }
-        System.out.println("Сумма трат на зарплаты за месяц " + sum + " рублей");
+        System.out.println("Сумма трат на зарплаты за месяц: " + sum + " рублей");
     }
 
     //    реализовал метод по поиску самого низкооплачиваемого сотрудника
     public void findMinimalSalaryWorker() {
-        String minimalSalaryWorker = "";
+        Employee minimalSalaryWorker = employees[0];
         for (int i = 0; i < size; i++) {
-            int a = employees[0].getSalary();
-            if (employees[i].getSalary() < a) {
-                minimalSalaryWorker = employees[i].getFullName();
+            if (employees[i].getSalary() < minimalSalaryWorker.getSalary()) {
+                minimalSalaryWorker = employees[i];
             }
         }
-        System.out.println("Сотрудник с минимальной зарплатой: " + minimalSalaryWorker);
+        System.out.println("Сотрудник с минимальной зарплатой: " + minimalSalaryWorker.getFullName());
+    }
+
+    //    реализовал метод, находящий среднее значение зарплат (в целочисленном виде, ибо так красиво, а на потенциальные копейки после запятой не купить и доширак)
+    public void findAverageSalary() {
+        int averageSalary = 0;
+        for (int i = 0; i < size; i++) {
+            averageSalary += employees[i].getSalary();
+        }
+        averageSalary = averageSalary / size;
+        System.out.println("Среднее значение зарплат: " + averageSalary + " рублей");
+    }
+
+    //    реализовал метод по поиску самого высокооплачиваемого сотрудника
+    public void findHighestSalaryWorker() {
+        Employee highestSalaryWorker = employees[0];
+        for (int i = 0; i < size; i++) {
+            if (employees[i].getSalary() > highestSalaryWorker.getSalary()) {
+                highestSalaryWorker = employees[i];
+            }
+        }
+        System.out.println("Сотрудник с наибольшей зарплатой: " + highestSalaryWorker.getFullName());
     }
 
     public static void main(String[] args) {
@@ -64,7 +84,7 @@ public class DataBaseCompany {
         dataBaseCompany.addEmployee("Захаров Захар Захарович", 5, 88_500);
         dataBaseCompany.addEmployee("Артемов Артем Артемович", 4, 18_900);
         dataBaseCompany.addEmployee("Вадимов Вадим Вадимович", 2, 108_500);
-        dataBaseCompany.addEmployee("Петров Петр Петрович", 5, 92_400);
+        dataBaseCompany.addEmployee("Петров Петр Петрович", 5, 22_400);
 
         dataBaseCompany.printAllInformation();
 
@@ -72,7 +92,10 @@ public class DataBaseCompany {
 
         dataBaseCompany.findMinimalSalaryWorker();
 
-        dataBaseCompany.printAllEmployeesFullNames();
+        dataBaseCompany.findHighestSalaryWorker();
 
+        dataBaseCompany.findAverageSalary();
+
+        dataBaseCompany.printAllEmployeesFullNames();
     }
 }
