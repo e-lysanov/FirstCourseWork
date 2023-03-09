@@ -72,6 +72,66 @@ public class DataBaseCompany {
         System.out.println("Сотрудник с наибольшей зарплатой: " + highestSalaryWorker.getFullName());
     }
 
+    //    реализовал метод, индексирующий все зарплаты на 25%
+    public void indexSalary() {
+        int percent = 25;
+        for (int i = 0; i < size; i++) {
+            employees[i].setSalary(employees[i].getSalary() * percent / 100 + employees[i].getSalary());
+        }
+    }
+
+    //    реализовал метод по поиску самого низкооплачиваемого сотрудника в отделе
+    public void findMinimalSalaryWorkerOfDepartment() {
+        int department = 4;
+        Employee minimalSalaryWorkerOfDepartment = employees[0];
+        for (int i = 0; i < size; i++) {
+            if (employees[i].getDepartment() == department && employees[i].getSalary() < minimalSalaryWorkerOfDepartment.getSalary()) {
+                minimalSalaryWorkerOfDepartment = employees[i];
+            }
+        }
+        System.out.println("Сотрудник с наименьшей зарплатой в " + department + " отделе: " + minimalSalaryWorkerOfDepartment.getFullName());
+    }
+
+    //    реализовал метод по поиску самого высокооплачиваемого сотрудника в отделе
+    public void findHighestSalaryWorkerOfDepartment() {
+        int department = 3;
+        Employee highestSalaryWorkerOfDepartment = employees[0];
+        for (int i = 0; i < size; i++) {
+            if (employees[i].getDepartment() == department && employees[i].getSalary() > highestSalaryWorkerOfDepartment.getSalary()) {
+                highestSalaryWorkerOfDepartment = employees[i];
+            }
+        }
+        System.out.println("Сотрудник с наибольшей зарплатой в " + department + " отделе: " + highestSalaryWorkerOfDepartment.getFullName());
+    }
+
+    //    реализовал метод, суммирующий все зарплаты по отделу
+    public void calculateSalaryOfDepartment() {
+        int department = 1;
+        int sum = 0;
+        for (int i = 0; i < size; i++) {
+            if (employees[i].getDepartment() == department){
+                sum += employees[i].getSalary();
+            }
+        }
+        System.out.println("Сумма трат на зарплаты за месяц в " + department + " отделе: " + sum + " рублей");
+    }
+
+    //    реализовал метод, находящий среднюю зарплату по отделу
+    public void findAverageSalaryOfDepartment() {
+        int department = 5;
+        int sum = 0;
+        int employeesOfDepartment = 0;
+        for (int i = 0; i < size; i++) {
+            if (employees[i].getDepartment() == department){
+                sum += employees[i].getSalary();
+                employeesOfDepartment ++;
+            }
+        }
+        sum = sum / employeesOfDepartment;
+        System.out.println("Средняя зарплата в " + department + " отделе: " + sum + " рублей");
+    }
+
+
     public static void main(String[] args) {
 
         DataBaseCompany dataBaseCompany = new DataBaseCompany();
@@ -97,5 +157,16 @@ public class DataBaseCompany {
         dataBaseCompany.findAverageSalary();
 
         dataBaseCompany.printAllEmployeesFullNames();
+
+        dataBaseCompany.calculateSalaryOfDepartment();
+
+        dataBaseCompany.findAverageSalaryOfDepartment();
+
+        dataBaseCompany.indexSalary();
+        dataBaseCompany.printAllInformation(); // проверка индексации
+
+        dataBaseCompany.findMinimalSalaryWorkerOfDepartment();
+
+        dataBaseCompany.findHighestSalaryWorkerOfDepartment();
     }
 }
